@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login — Teacher Chat Demo</title>
+  <style>
+    :root {
+      --card-bg: #fff;
+      --accent: #4f46e5;
+      --muted: #6b7280;
+    }
+    * { box-sizing: border-box; font-family: Inter, system-ui, Arial; }
+    body {
+      margin:0; min-height:100vh;
+      display:flex; align-items:center; justify-content:center;
+      background: linear-gradient(135deg,#eef2ff 0%, #fff 100%);
+    }
+    .card {
+      width: 360px; padding: 26px; border-radius: 12px;
+      background: var(--card-bg); box-shadow: 0 8px 24px rgba(15,23,42,0.08);
+    }
+    h1 { margin:0 0 8px; font-size:20px; color:#111827; }
+    p { margin:0 0 16px; color:var(--muted); font-size:14px; }
+    label { display:block; margin-top:10px; font-size:13px; color:#374151; }
+    input[type="text"], input[type="password"] {
+      width:100%; padding:10px 12px; margin-top:6px; border-radius:8px;
+      border:1px solid #e5e7eb; outline:none; font-size:14px;
+    }
+    button {
+      margin-top:18px; width:100%; padding:10px 12px; border:0; border-radius:8px;
+      background:var(--accent); color:#fff; font-weight:600; cursor:pointer;
+    }
+    .note { margin-top:12px; font-size:12px; color:#9ca3af; text-align:center; }
+    .small { font-size:12px; color:#9ca3af; text-align:center; margin-top:8px;}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>School Chat Demo</h1>
+    <p>Login with any email & password (this is a static demo).</p>
+
+    <form id="loginForm">
+      <label for="email">Email</label>
+      <input id="email" type="text" placeholder="anything goes (e.g. student@example.com)">
+
+      <label for="password">Password</label>
+      <input id="password" type="password" placeholder="any password">
+
+      <button type="submit">Login</button>
+    </form>
+
+    <div class="note">Tip: this demo uses your browser storage to remember login and chats.</div>
+  </div>
+
+  <script>
+    // On submit we "log in" (no checks) and go to teachers.html
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      // store a simple logged-in flag and the email for display on next page
+      const email = document.getElementById('email').value || 'guest';
+      localStorage.setItem('chat_demo_logged_in', '1');
+      localStorage.setItem('chat_demo_user', email);
+      // redirect to teachers page (make sure teachers.html is in same folder)
+      window.location.href = 'teachers.html';
+    });
+  </script>
+</body>
+</html>
